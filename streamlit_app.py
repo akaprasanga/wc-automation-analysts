@@ -14,16 +14,17 @@ st.write("Jeffrey MacLeod:: Hello my name is Jeffrey. I live in Canada on Vancou
 st.write("Lucas Cable:: I'm Lucas - a freshman at Early College High School in California. Some of my hobbies/interests include playing the drums, Table Tennis, and anything math related.")
 
 #description: Our dataset will be about Global Pollution and it's contributors, individual factors, and comparisons between the two.
-st.write("Our dataset will be about Global Pollution and it's contributors, individual factors, and comparisons between the two.")
+
 st.markdown("""---""")
 my_dataset = pd.read_csv("Cleaned_Global_pollution.csv")
 
 #show off a bit of your data.
 st.header('Our Data')
-st.write(my_dataset.head())
+st.write("Our dataset will be about Global Pollution and it's contributors, individual factors, and comparisons between the two. In our original dataset we had a lot of NULL and missing values. In order to solve that issue we dropped all the columns that had more than 40% of missing values. After that, we used Median and Mode Imputation techniques to fill the missing values. And below is our cleaned dataset.")
+st.write(my_dataset)
 st.markdown("""---""")
 
-st.header('How much waste does each country produce')
+st.header('How much waste does each country produce?')
 st.write('How much do countries total waste percentages vary')
 fig = px.bar(my_dataset, x = "country_name", y = ['total_msw_total_msw_generated_tons_year'], title = "Countries total waste").update_layout(
     xaxis_title="Countries", yaxis_title="Waste Generated in a Year (tons)"
@@ -44,7 +45,7 @@ st.markdown("""---""")
 
 ########### Jefferey's plot
 
-st.header("Country with highist composition of plastic")
+st.header("Country with highest composition of plastic")
 
 fig = px.bar(my_dataset, y='composition_plastic_percent', x='country_name', color ="region_id")
 fig.update_layout(barmode='stack', xaxis={'categoryorder':'total descending'})
@@ -102,7 +103,7 @@ st.markdown("""---""")
          
 st.header("The Effect of Waste Management Laws on the Total Amount of MSW Produced in Countries")
 st.write("Does a national law governing waste management in a country decrease the total waste produced in that country?")
-fig = px.scatter(my_dataset, x="total_msw_total_msw_generated_tons_year", size="total_msw_total_msw_generated_tons_year", color="other_information_national_law_governing_solid_waste_management_in_the_country", hover_name="country_name", log_x=True, size_max=60, color_discrete_sequence=["cornflowerblue", "crimson"])
+fig = px.scatter(my_dataset, x="total_msw_total_msw_generated_tons_year", size="total_msw_total_msw_generated_tons_year", color="other_information_national_law_governing_solid_waste_management_in_the_country", hover_name="country_name", log_x=True, size_max=60, color_discrete_sequence=["cornflowerblue", "crimson"], title="Effect of Waste Management Laws on the Total Amount of Municipal Solid Waste (MSW) Produced in Countries")
 fig.update_layout(legend_title_text='National Law Governing Solid Waste Management')
 st.plotly_chart(fig)
 st.write("A national law governing waste management in a country does not decrease the total waste produced in that country. The countries that produced the most amount of municipal solid waste (MSW) had national laws governing solid waste.")
