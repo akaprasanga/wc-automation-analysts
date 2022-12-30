@@ -24,8 +24,8 @@ st.write("Our dataset will be about Global Pollution and it's contributors, indi
 st.write(my_dataset)
 st.markdown("""---""")
 
-st.header('How much waste does each country produce?')
-st.write('How much do countries total waste percentages vary')
+st.header('How much waste does each country produce')
+st.write('How much do countries total waste percentages vary?')
 fig = px.bar(my_dataset, x = "country_name", y = ['total_msw_total_msw_generated_tons_year'], title = "Countries total waste").update_layout(
     xaxis_title="Countries", yaxis_title="Waste Generated in a Year (tons)"
 )
